@@ -1,6 +1,4 @@
 result = 0
-history = []
-next_history_id = 0
 
 calc_history = []
 next_calc_history_id = 0
@@ -45,19 +43,6 @@ while command:
         command = input("Please enter a command: ")
         continue
     
-    elif command == "remove":
-
-        history_id = int(
-            input("Please enter the history entry id to remove: "))
-
-        for entry in history:
-            if entry[0] == history_id:
-                history.remove(entry)
-                break
-
-        command = input("Please enter a command: ")
-        continue
-
     elif command == "history":
 
         print("Id     Name     Value")
