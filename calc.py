@@ -42,19 +42,6 @@ while command:
 
         command = input("Please enter a command: ")
         continue
-    
-    elif command == "history":
-
-        print("Id     Name     Value")
-        print("-----------------------")
-
-        if len(history) < 1:
-            print("There is no history")
-        else:
-            for id, name, value in history:
-                print(f"{str(id).rjust(2)} {name.ljust(12)} {value}")
-        command = input("Please enter a command: ")
-        continue
 
     num = float(input("Please enter an operand: "))
 
