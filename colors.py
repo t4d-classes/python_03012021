@@ -1,10 +1,7 @@
-next_color_id = 0
-
 def add_color(colors, name, hexcode):
 
-    global next_color_id
+    next_color_id = max( [ c[0] for c in colors ] or [0] ) + 1
 
-    next_color_id = next_color_id + 1
     colors.append((next_color_id, name, hexcode))
 
 def remove_color_by_id(colors, color_id):
@@ -38,4 +35,5 @@ add_color(colors, "blue", "#0000ff")
 
 print(color_table(colors) + "\n")
 remove_color_by_id(colors, 2)
+add_color(colors, "purple", "#ff00ff")
 print(color_table(colors))
