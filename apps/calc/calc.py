@@ -1,12 +1,24 @@
+from functools import reduce
+
+def calc_add(r, n):
+    return r + n
+
+calc_operations = [
+    ('Add', 'add', calc_add),   
+    ('Subtract', 'subtract', lambda r, n: r - n),   
+    ('Multiply', 'multiply', lambda r, n: r * n),   
+    ('Divide', 'divide', lambda r, n: r / n),   
+    ('Exponent', 'exponent', lambda r, n: r ** n),   
+    ('Floor Division', 'floordiv', lambda r, n: r // n),   
+]
+
 calc_history = []
-next_calc_history_id = 0
 
 def append_calc_history(calc_history_list, op_name, op_value):
 
-    global next_calc_history_id
-
-    next_calc_history_id += 1
+    next_calc_history_id = max( [ t[0] for t in calc_history_list ] or [0] ) + 1
     calc_history_list.append((next_calc_history_id, op_name, op_value))
+
 
 def remove_calc_history_entry(calc_history_list, calc_history_entry_id):
 
@@ -14,23 +26,31 @@ def remove_calc_history_entry(calc_history_list, calc_history_entry_id):
         if calc_history_entry[0] == calc_history_entry_id:
             calc_history.remove(calc_history_entry)
             break
-        
+
+def find_calc_operation_by_name(calc_operations, op_name):
+
+    for calc_operation in calc_operations:
+        if calc_operation[1] == op_name:
+            return calc_operation
+
+    return None
+
+def calc(result, calc_history_entry):
+
+    global calc_operations
+
+    _, op_name, op_value = calc_history_entry
+
+    calc_operation = find_calc_operation_by_name(calc_operations, op_name)
+    if calc_operation:
+        calc_operation_func = calc_operation[2]
+        return calc_operation_func(result, op_value)
+    else:
+        return result
+
 def calculate_result(calc_history_list):
 
-    result = 0
-    
-    for _, command, num in calc_history_list:
-
-        if command == "add":
-            result = result + num
-        elif command == "subtract":
-            result = result - num
-        elif command == "multiply":
-            result = result * num
-        elif command == "divide":
-            result = result / num
-
-    return result
+    return reduce(calc, calc_history_list, 0)
 
 def calc_history_table(calc_history_list):
 
@@ -49,28 +69,14 @@ def calc_history_table(calc_history_list):
 
 def calc_ops_count_table(calc_history_list):
 
-    add_count = 0
-    subtract_count = 0
-    multiply_count = 0
-    divide_count = 0
-
-    for _1, op_name, _2 in calc_history_list:
-        if op_name == "add":
-            add_count += 1
-        elif op_name == "subtract":
-            subtract_count += 1
-        elif op_name == "multiply":
-            multiply_count += 1
-        elif op_name == "divide":
-            divide_count += 1
+    op_names = [ c[1] for c in calc_history_list ]
 
     count_table = []
     count_table.append("Op Counts")
     count_table.append("----------------")
-    count_table.append(f"Add: {add_count}")
-    count_table.append(f"Subtract: {subtract_count}")
-    count_table.append(f"Multiply: {multiply_count}")
-    count_table.append(f"Divide: {divide_count}")
+
+    for op_label, op_name, _ in calc_operations:
+        count_table.append(f"{op_label}: {op_names.count(op_name)}")
 
     return "\n".join(count_table)
 
@@ -104,7 +110,7 @@ while command:
         remove_calc_history_entry(calc_history, calc_history_entry_id)
     else:
         num = get_operand()
-        append_calc_history(calc_history, command, num)
+        append_calc_history(calc_history, command.lower(), num)
         print(f"Result: {calculate_result(calc_history)}")
 
     command = get_command()
