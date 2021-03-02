@@ -44,3 +44,7 @@ print(sum(nums))
 
 # for x in range(10, 20, 2):
 #     print(x)
+
+nums = [1,3,2,6,4,3,2,5,6,7,8,6]
+
+print(nums.count(6))
