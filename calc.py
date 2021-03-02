@@ -8,15 +8,15 @@ command = input("Please enter a command: ")
 while command:
 
     if command == "clear":
-        
+
         result = 0
         calc_history = []
 
         print(f"Result: {result}")
-        
+
         command = input("Please enter a command: ")
         continue
-    
+
     elif command == "history":
 
         print("Id | Operation | Operand")
@@ -26,14 +26,16 @@ while command:
             print("This is no history.")
         else:
             for id, op_name, op_value in calc_history:
-                print(f"{str(id).rjust(2)} | {op_name.ljust(9)} | {str(op_value).rjust(7)}")
+                print(
+                    f"{str(id).rjust(2)} | {op_name.ljust(9)} | {str(op_value).rjust(7)}")
 
         command = input("Please enter a command: ")
         continue
 
     elif command == "remove":
 
-        calc_history_entry_id = int(input("Please enter the id of the history entry to remove: "))
+        calc_history_entry_id = int(
+            input("Please enter the id of the history entry to remove: "))
 
         for calc_history_entry in calc_history:
             if calc_history_entry[0] == calc_history_entry_id:
