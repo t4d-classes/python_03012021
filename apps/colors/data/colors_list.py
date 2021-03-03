@@ -1,3 +1,7 @@
+
+print(__name__)
+
+
 def add_color(colors, name, hexcode):
 
     next_color_id = max( [ c["id"] for c in colors ] or [0] ) + 1
