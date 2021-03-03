@@ -1,22 +1,34 @@
+class Color:
 
-print(__name__)
+    def __init__(self, id, name, hexcode):
+        self.id = id
+        self.name = name
+        self.hexcode = hexcode
 
 
-def add_color(colors, name, hexcode):
 
-    next_color_id = max( [ c["id"] for c in colors ] or [0] ) + 1
+class ColorsList:
 
-    new_color = {
-        "id": next_color_id,
-        "name": name,
-        "hexcode": hexcode,
-    }
+    def __init__(self):
 
-    colors.append(new_color)
+        self._colors = []
 
-def remove_color_by_id(colors, color_id):
+    @property
+    def colors(self):
+        return self._colors
 
-    for color in colors:
-        if color["id"] == color_id:
-            colors.remove(color)
-            break
+
+    def add_color(self, name, hexcode):
+
+        next_color_id = max( [ c.id for c in self._colors ] or [0] ) + 1
+
+        new_color = Color(next_color_id, name, hexcode)
+
+        self._colors.append(new_color)
+
+    def remove_color_by_id(self, color_id):
+
+        for color in self._colors:
+            if color.id == color_id:
+                self._colors.remove(color)
+                break
