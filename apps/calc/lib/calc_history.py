@@ -8,5 +8,5 @@ def remove_calc_history_entry(calc_history_list, calc_history_entry_id):
 
     for calc_history_entry in calc_history_list:
         if calc_history_entry[0] == calc_history_entry_id:
-            calc_history.remove(calc_history_entry)
+            calc_history_list.remove(calc_history_entry)
             break

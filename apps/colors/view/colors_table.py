@@ -8,7 +8,7 @@ def color_table(colors):
     if len(colors) < 1:
         table.append("There are no colors")
     else:
-        for id, name, hexcode in colors:
-            table.append(f"{str(id).rjust(2)} {name.ljust(12)} {hexcode}")
+        for color in colors:
+            table.append(f"{str(color['id']).rjust(2)} {color['name'].ljust(12)} {color['hexcode']}")
 
     return "\n".join(table)
