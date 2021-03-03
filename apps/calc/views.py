@@ -18,9 +18,9 @@ def calc_history_table(calc_history_list):
         for calc_history_entry in calc_history_list:
 
             table_row = [
-                str(calc_history_entry["id"]).rjust(2),
-                calc_history_entry["op_name"].ljust(9),
-                str(calc_history_entry["op_value"]).rjust(7),
+                str(calc_history_entry.id).rjust(2),
+                calc_history_entry.op_name.ljust(9),
+                str(calc_history_entry.op_value).rjust(7),
             ]
 
             table.append(" | ".join(table_row))
@@ -29,7 +29,7 @@ def calc_history_table(calc_history_list):
 
 def calc_ops_count_table(calc_history_list):
 
-    op_names = [ c["op_name"] for c in calc_history_list ]
+    op_names = [ c.op_name for c in calc_history_list ]
 
     count_table = []
     count_table.append("Op Counts")

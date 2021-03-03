@@ -23,8 +23,8 @@ class ColorsList:
         next_color_id = max( [ c.id for c in self._colors ] or [0] ) + 1
 
         new_color = Color(next_color_id, name, hexcode)
-
         self._colors.append(new_color)
+
 
     def remove_color_by_id(self, color_id):
 

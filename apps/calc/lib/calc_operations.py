@@ -27,9 +27,9 @@ def calc(result, calc_history_entry):
 
     global calc_operations
 
-    calc_operation = find_calc_operation_by_name(calc_operations, calc_history_entry["op_name"])
+    calc_operation = find_calc_operation_by_name(calc_operations, calc_history_entry.op_name)
     if calc_operation:
         calc_operation_func = calc_operation.func
-        return calc_operation_func(result, calc_history_entry["op_value"])
+        return calc_operation_func(result, calc_history_entry.op_value)
     else:
         return result
