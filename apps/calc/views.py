@@ -15,21 +15,27 @@ def calc_history_table(calc_history_list):
     if len(calc_history_list) < 1:
         table.append("This is no history.")
     else:
-        for id, op_name, op_value in calc_history_list:
-            table.append(
-                f"{str(id).rjust(2)} | {op_name.ljust(9)} | {str(op_value).rjust(7)}")
+        for calc_history_entry in calc_history_list:
+
+            table_row = [
+                str(calc_history_entry["id"]).rjust(2),
+                calc_history_entry["op_name"].ljust(9),
+                str(calc_history_entry["op_value"]).rjust(7),
+            ]
+
+            table.append(" | ".join(table_row))
 
     return "\n".join(table)
 
 def calc_ops_count_table(calc_history_list):
 
-    op_names = [ c[1] for c in calc_history_list ]
+    op_names = [ c["op_name"] for c in calc_history_list ]
 
     count_table = []
     count_table.append("Op Counts")
     count_table.append("----------------")
 
-    for op_label, op_name, _ in calc_operations:
-        count_table.append(f"{op_label}: {op_names.count(op_name)}")
+    for calc_operation in calc_operations:
+        count_table.append(f"{calc_operation['label']}: {op_names.count(calc_operation['name'])}")
 
     return "\n".join(count_table)
