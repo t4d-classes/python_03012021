@@ -36,6 +36,6 @@ def calc_ops_count_table(calc_history_list):
     count_table.append("----------------")
 
     for calc_operation in calc_operations:
-        count_table.append(f"{calc_operation['label']}: {op_names.count(calc_operation['name'])}")
+        count_table.append(f"{calc_operation.label}: {op_names.count(calc_operation.name)}")
 
     return "\n".join(count_table)
