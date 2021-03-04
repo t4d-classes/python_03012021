@@ -1,0 +1,8 @@
+red
+green
+blue
+orange
+yellow
+brown
+purple
+maroon

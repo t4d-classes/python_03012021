@@ -7,9 +7,10 @@ if __name__ == '__main__':
     calc_history_list = CalcHistoryList()
     command = "clear"
 
-    # calc_history_list.calc_history.append(CalcHistoryEntry(10, 'add', 2))
-
     while command:
+
+        with open("command.log", "a") as command_log_file:
+            command_log_file.write(command + "\n")
 
         if command == "save":
             file_name = get_file_name()
@@ -18,7 +19,7 @@ if __name__ == '__main__':
             file_name = get_file_name()
             calc_history_list.load_history(file_name)
         elif command == "clear":
-            # calc_history_list.clear_history()
+            calc_history_list.clear_history()
             print(f"Result: {calculate_result(calc_history_list)}")
         elif command == "history":
             print(calc_history_table(calc_history_list) + "\n")
