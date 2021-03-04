@@ -1,5 +1,5 @@
 from views import calculate_result, calc_history_table, calc_ops_count_table
-from lib.calc_commands import get_remove_history_entry_id, get_operand, get_command
+from lib.calc_commands import get_remove_history_entry_id, get_operand, get_command, get_file_name
 from lib.calc_history import CalcHistoryList, CalcHistoryEntry
 
 if __name__ == '__main__':
@@ -11,7 +11,13 @@ if __name__ == '__main__':
 
     while command:
 
-        if command == "clear":
+        if command == "save":
+            file_name = get_file_name()
+            calc_history_list.save_history(file_name)
+        elif command == "load":
+            file_name = get_file_name()
+            calc_history_list.load_history(file_name)
+        elif command == "clear":
             # calc_history_list.clear_history()
             print(f"Result: {calculate_result(calc_history_list)}")
         elif command == "history":

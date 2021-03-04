@@ -8,3 +8,6 @@ def get_remove_history_entry_id():
 
 def get_operand():
     return float_input("Please enter an operand: ")
+
+def get_file_name():
+    return input("Please enter a file name: ")
